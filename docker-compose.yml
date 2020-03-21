@@ -15,8 +15,8 @@ services:
     environment:
       url: http://ghost:678
 
-  nginx:
-    image: nginx
+  ubuntu:
+    image: ubuntu
 
 volumes:
     content:
