@@ -9,14 +9,22 @@ services:
     image: ghost
     restart: always
     ports:
-      - "678:2368"
+      - "80:2368"
     volumes:
       - content:/var/lib/ghost/content
     environment:
-      url: http://ghost:678
+      url: http://ghost.halfassedmarketing.com
 
-  ubuntu:
-    image: ubuntu
+  ghost_backup:
+    build: ./ghostbackup
+    volumes:
+      - content:/content
+    secrets:
+      - gcloud_auth.json
 
 volumes:
     content:
+
+secrets:
+  gcloud_auth.json:
+    file: ./secrets/gcloud_auth.json
