@@ -11,7 +11,7 @@ services:
     volumes:
       - content:/var/lib/ghost/content
     environment:
-      url: https://ghost.halfassedmarketing.com
+      url: https://writer.halfassedmarketing.com
 
   ghost_backup:
     build: ./ghostbackup
@@ -27,19 +27,30 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - certs:/etc/nginx/certs
+      - certs:/etc/letsencrypt
       - webroot:/usr/share/nginx/html
+      - nginxconf:/etc/nginx/conf.d
 
   certbot:
     image: certbot/certbot
     volumes:
-      - certs:/etc/letsencrypt/live/ghost.halfassedmarketing.com/
+      - certs:/etc/letsencrypt/
       - webroot:/webroot
 
 volumes:
     content:
+      driver_opts:
+        device: "/docker/environment/content"
     certs:
+      driver_opts:
+        device: "/docker/environment/certs"
     webroot:
+      driver_opts:
+        device: "/docker/environment/webroot"
+    nginxconf:
+      driver_opts:
+        device: "/docker/environment/nginxconf"
+    
 
 secrets:
   gcloud_auth.json:
