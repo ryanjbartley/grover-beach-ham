@@ -28,7 +28,7 @@ services:
       - "443:443"
     volumes:
       - certs:/etc/nginx/certs
-      - webroot:/etc/nginx/html
+      - webroot:/usr/share/nginx/html
 
   certbot:
     image: certbot/certbot
