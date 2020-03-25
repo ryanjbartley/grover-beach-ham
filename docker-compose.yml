@@ -29,7 +29,7 @@ services:
       - certs:/etc/nginx/certs
 
   certbot:
-    image: certbot
+    image: certbot/certbot
     ports: 
       - "443:443"
 
