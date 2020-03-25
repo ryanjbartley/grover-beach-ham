@@ -4,18 +4,10 @@
 version: '3.1'
 
 volumes:
-  content:
-    driver_opts:
-      device: "/docker/environment/content"
-  certs:
-    driver_opts:
-      device: "/docker/environment/certs"
-  webroot:
-    driver_opts:
-      device: "/docker/environment/webroot"
-  nginxconf:
-    driver_opts:
-      device: "/docker/environment/nginxconf"
+  - content:/docker/environment/content
+  - certs:/docker/environment/certs
+  - webroot:/docker/environment/webroot
+  - nginxconf:/docker/environment/nginxconf
 
 services:
 
