@@ -33,7 +33,7 @@ services:
     ports: 
       - "80:80"
     volumes:
-      -certs:/etc/letsencrypt/live/ghost.halfassedmarketing.com
+      - certs:/etc/letsencrypt/live/ghost.halfassedmarketing.com
 
 volumes:
     content:
