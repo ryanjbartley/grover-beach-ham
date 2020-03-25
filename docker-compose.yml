@@ -9,14 +9,14 @@ services:
     image: ghost
     restart: always
     volumes:
-      - content:/var/lib/ghost/content
+      - ./environment/content:/var/lib/ghost/content
     environment:
       url: https://writer.halfassedmarketing.com
 
   ghost_backup:
     build: ./ghostbackup
     volumes:
-      - content:/content
+      - ./environment/content:/content
     secrets:
       - gcloud_auth.json
 
@@ -27,38 +27,21 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - certs:/etc/letsencrypt
-      - webroot:/usr/share/nginx/html
-      - nginxconf:/etc/nginx/conf.d
+      - ./environment/certs:/etc/letsencrypt
+      - ./environment/webroot:/usr/share/nginx/html
+      - ./environment/nginxconf:/etc/nginx/conf.d/
 
   certbot:
     image: certbot/certbot
     volumes:
-      - certs:/etc/letsencrypt/
-      - webroot:/webroot
+      - ./environment/certs:/etc/letsencrypt/
+      - ./environment/webroot:/webroot
       
 volumes:
   content:
-    driver: local
-    driver_opts: 
-      o: bind
-      device: ./environment/content
   certs:
-    driver: local
-    driver_opts:
-      o: bind
-      device: ./environment/certs
   webroot:
-    driver: local
-    driver_opts:
-      o: bind
-      device: ./environment/webroot
   nginxconf:
-    driver: local
-    driver_opts:
-      o: bind
-      device: ./environment/nginxconf
-      
 
 secrets:
   gcloud_auth.json:
