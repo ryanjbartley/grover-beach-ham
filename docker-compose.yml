@@ -3,19 +3,6 @@
 
 version: '3.1'
 
-volumes:
-  content:
-      device: ./environment/content
-  certs:
-    driver_opts:
-      device: ./environment/certs
-  webroot:
-    driver_opts:
-      device: ./environment/webroot
-  nginxconf:
-    driver_opts:
-      device: ./environment/nginxconf
-
 services:
 
   ghost:
@@ -49,6 +36,21 @@ services:
     volumes:
       - certs:/etc/letsencrypt/
       - webroot:/webroot
+      
+volumes:
+  content:
+    driver_opts: 
+      device: ./environment/content
+  certs:
+    driver_opts:
+      device: ./environment/certs
+  webroot:
+    driver_opts:
+      device: ./environment/webroot
+  nginxconf:
+    driver_opts:
+      device: ./environment/nginxconf
+      
 
 secrets:
   gcloud_auth.json:
