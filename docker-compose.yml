@@ -8,8 +8,6 @@ services:
   ghost:
     image: ghost
     restart: always
-    ports:
-      - "80:2368"
     volumes:
       - content:/var/lib/ghost/content
     environment:
@@ -22,8 +20,22 @@ services:
     secrets:
       - gcloud_auth.json
 
+  nginx:
+    image: nginx
+    restart: always
+    ports: 
+      - "443:443"
+    volumes:
+      - certs:/etc/nginx/certs
+
+  certbot:
+    image: certbot
+    ports: 
+      - "443:443"
+
 volumes:
     content:
+    certs:
 
 secrets:
   gcloud_auth.json:
