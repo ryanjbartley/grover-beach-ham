@@ -39,16 +39,24 @@ services:
       
 volumes:
   content:
+    driver: local
     driver_opts: 
+      o: bind
       device: ./environment/content
   certs:
+    driver: local
     driver_opts:
+      o: bind
       device: ./environment/certs
   webroot:
+    driver: local
     driver_opts:
+      o: bind
       device: ./environment/webroot
   nginxconf:
+    driver: local
     driver_opts:
+      o: bind
       device: ./environment/nginxconf
       
 
