@@ -24,20 +24,22 @@ services:
     image: nginx
     restart: always
     ports: 
+      - "80:80"
       - "443:443"
     volumes:
       - certs:/etc/nginx/certs
+      - webroot:/etc/nginx/html
 
   certbot:
     image: certbot/certbot
-    ports: 
-      - "80:80"
     volumes:
       - certs:/etc/letsencrypt/live/ghost.halfassedmarketing.com
+      - webroot:/webroot
 
 volumes:
     content:
     certs:
+    webroot:
 
 secrets:
   gcloud_auth.json:
