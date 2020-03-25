@@ -33,7 +33,7 @@ services:
   certbot:
     image: certbot/certbot
     volumes:
-      - certs:/etc/letsencrypt/live/ghost.halfassedmarketing.com
+      - certs:/etc/letsencrypt/live/ghost.halfassedmarketing.com/
       - webroot:/webroot
 
 volumes:
