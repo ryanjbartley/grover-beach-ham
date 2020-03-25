@@ -5,17 +5,16 @@ version: '3.1'
 
 volumes:
   content:
-    driver_opts:
-      device: "./environment/content"
+      device: ./environment/content
   certs:
     driver_opts:
-      device: "./environment/certs"
+      device: ./environment/certs
   webroot:
     driver_opts:
-      device: "./environment/webroot"
+      device: ./environment/webroot
   nginxconf:
     driver_opts:
-      device: "./environment/nginxconf"
+      device: ./environment/nginxconf
 
 services:
 
