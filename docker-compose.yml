@@ -10,6 +10,8 @@ services:
     restart: always
     volumes:
       - content:/var/lib/ghost/content
+    ports:
+      - "2368:2368"
     environment:
       url: https://writer.halfassedmarketing.com
 
