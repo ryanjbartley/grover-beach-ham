@@ -13,7 +13,7 @@ services:
     ports:
       - "2368:2368"
     environment:
-      url: https://writer.halfassedmarketing.com
+      url: http://ghost
 
   ghost_backup:
     build: ./ghostbackup
