@@ -10,9 +10,7 @@ services:
     ports:
       - "2368:2368"
     environment:
-      url: https://writer.halfassedmarketing.com
-      VIRTUAL_HOST: writer.halfassedmarketing.com
-      VIRTUAL_PORT: 2368
+      url: http://ghost:2368
 
   ghost_backup:
     build: ./ghostbackup
