@@ -14,6 +14,8 @@ services:
       - "2368:2368"
     environment:
       url: http://ghost
+      VIRTUAL_HOST: writer.halfassedmarketing.com
+      VIRTUAL_PORT: 2368
 
   ghost_backup:
     build: ./ghostbackup
