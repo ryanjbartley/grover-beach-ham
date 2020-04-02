@@ -9,11 +9,12 @@ Install instructions
 3. Domain pointed to compute engine static ip with ports 80 and 443 open
 4. snap install docker
 5. git clone project
-6. cd to directory and docker-compose up (first time interactive to ensure operations successful)
-7. run personalize.sh
-8. docker-compose up -d
-9. certbot process
-10. Start blogging
+6. cd to directory customize .env based on example
+7. docker-compose up (first time interactive to ensure operations successful)
+8. run personalize.sh
+9. docker-compose up -d
+10. certbot process
+11. Start blogging
 
 Still working on
 
