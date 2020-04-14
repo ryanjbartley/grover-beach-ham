@@ -11,6 +11,22 @@ services:
       - "2368:2368"
     environment:
       url: https://${HTTPS_DOMAIN}
+      mail_transport: "SMTP"
+      mail_options_host: "mail"
+      mail_options_port: "587"
+      mail_options_auth_user: ${MAIL_USER}@${HTTPS_DOMAIN}
+      mail_options_auth_pass: ${MAIL_PASS}
+      
+  mail:
+    image: catatnight/postfix
+    restart: always
+    volumes: 
+      - certs:/etc/posftix/certs
+    ports:
+      - "587:587"
+    environment:
+      maildomain: ${HTTPS_DOMAIN}
+      smtp_user: ${MAIL_USER}@${HTTPS_DOMAIN}:${MAIL_PASS}
 
   ghost_backup:
     build: ./ghostbackup
