@@ -11,22 +11,18 @@ services:
       - "2368:2368"
     environment:
       url: https://${HTTPS_DOMAIN}
-      mail: SMTP
-      mail__options__host: mail
-      mail__options__port: 587
-      mail__options__auth__user: ${MAIL_USER}@${HTTPS_DOMAIN}
-      mail__options__auth__pass: ${MAIL_PASS}
+      mail__transport: SMTP
+      mail__options__host: "mail"
+      mail__options__port: 26
+      mail__from: "'Your Ghost Blog' <ghost@${HTTPS_DOMAIN}>"
       
   mail:
-    image: catatnight/postfix
+    image: namshi/smtp
     restart: always
-    volumes: 
-      - certs:/etc/posftix/certs
     ports:
-      - "587:587"
+      - "26:26"
     environment:
-      maildomain: ${HTTPS_DOMAIN}
-      smtp_user: ${MAIL_USER}@${HTTPS_DOMAIN}:${MAIL_PASS}
+      PORT: 26
 
   ghost_backup:
     build: ./ghostbackup
