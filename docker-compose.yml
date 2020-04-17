@@ -19,10 +19,16 @@ services:
   mail:
     image: namshi/smtp
     restart: always
+    volumes:
+      - certs:/etc/letsencrypt
     ports:
       - "26:26"
     environment:
+      MAILNAME: ${HTTPS_DOMAIN}
       PORT: 26
+      KEY_PATH: /etc/letsencrypt/live/${HTTPS_DOMAIN}/privkey.pem
+      CERTIFICATE_PATH: /etc/letsencrypt/live/${HTTPS_DOMAIN}/fullchain.pem
+
 
   ghost_backup:
     build: ./ghostbackup
